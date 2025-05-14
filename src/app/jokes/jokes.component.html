@@ -1,0 +1,21 @@
+<div class="jokes-controls">
+  <button (click)="loadRandom()">Random</button>
+  <button (click)="loadProgramming()">Programming</button>
+  <button (click)="loadGeneral()">General</button>
+  <button (click)="showFavorites()" [disabled]="!favoriteCount">
+    Favorites
+  </button>
+</div>
+
+<div class="jokes-list">
+  <div *ngFor="let j of jokes" class="joke-card">
+    <div class="joke-text">
+      <p class="setup">{{ j.setup }}</p>
+      <p class="punchline">{{ j.punchline }}</p>
+    </div>
+    <button class="fav-btn" (click)="toggleFavorite(j)">
+      <span [class.favorited]="isFavorite(j)">❤️</span>
+    </button>
+  </div>
+  <p *ngIf="!jokes.length" class="empty">No jokes to display.</p>
+</div>

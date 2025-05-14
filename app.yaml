@@ -1,0 +1,15 @@
+runtime: nodejs22
+service: jokes-app
+handlers:
+  - url: /
+    static_files: dist/jokes-app/index.html
+    upload: dist/jokes-app/index.html
+
+  - url: /(.*)
+    static_files: dist/jokes-app/\1
+    upload: dist/jokes-app/(.*)
+
+automatic_scaling:
+  target_cpu_utilization: 0.90
+  min_instances: 1
+  max_instances: 1
